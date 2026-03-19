@@ -13,16 +13,16 @@ mkTarget {
     (
       { opacity }:
       {
-        programs.foot.settings.colors.alpha = opacity.terminal;
+        programs.foot.settings.colors-dark.alpha = opacity.terminal;
       }
     )
     (
       { colors, inputs }:
       {
         programs.foot.settings.main.include = lib.singleton (
-          toString (colors {
+          lib.replaceString "[colors]" "[colors-dark]" (toString (colors {
             templateRepo = inputs.tinted-foot;
-          })
+          }))
         );
       }
     )
